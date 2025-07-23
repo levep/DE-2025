@@ -35,6 +35,21 @@ services:
             - KAFKA_BROKERCONNECT=course-kafka:9092
         depends_on:
             - course-kafka
+
+    python-app:
+        image: python:3.11-slim
+        container_name: python-kafka-container
+        command: tail -f /dev/null  # Keeps the container alive
+        volumes:
+        - ./app:/app
+        working_dir: /app
+        tty: true
+        stdin_open: true
+        entrypoint: >
+            sh -c "apt-get update &&
+                apt-get install -y vim nano &&
+                pip install --no-cache-dir kafka-python &&
+                tail -f /dev/null"
             
     # mariadb:
     #     container_name: mariadb
