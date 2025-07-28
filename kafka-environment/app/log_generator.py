@@ -16,7 +16,7 @@ def event_generator():
 
 
 
-log_path = '/home/developer/kafka/srcFiles/srcFile.log'
+log_path = '/home/naya/kafka/srcFiles/srcFile.log'
 with open(log_path, 'w') as f:
     for counter, hostname, ts in event_generator():
         f.write(f'Event #{counter}|{hostname}|{ts}\n')

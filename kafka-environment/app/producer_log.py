@@ -7,7 +7,7 @@ import json
 topic2 = 'kafka-tst-02'
 brokers = ["course-kafka:9092"]
 
-source_file = '/home/developer/kafka/srcFiles/srcFile.log'
+source_file = '/home/naya/kafka/srcFiles/srcFile.log'
 
 # First we set the producer.
 producer = KafkaProducer(
