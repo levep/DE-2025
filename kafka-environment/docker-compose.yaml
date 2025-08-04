@@ -106,11 +106,14 @@ services:
     #         - "4041:4041"
     #         - "4042:4042"
 
-    # mongo:
-    #     image: mongo:8.0
-    #     container_name: mongo
-    #     ports:
-    #         - "27017:27017"
+    mongo:
+        image: mongo:8.0
+        container_name: mongo
+        volumes:
+        - ./data:/data
+        working_dir: /data        
+        ports:
+            - "27017:27017"
             
     # nifi:
     #     image: nayacollege/nifi:1.0
