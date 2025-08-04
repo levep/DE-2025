@@ -110,8 +110,8 @@ services:
         image: mongo:8.0
         container_name: mongo
         volumes:
-        - ./data:/data
-        working_dir: /data        
+        - ./data:/de_data
+        working_dir: /de_data        
         ports:
             - "27017:27017"
             
