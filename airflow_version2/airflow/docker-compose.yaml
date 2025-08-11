@@ -71,6 +71,8 @@ x-airflow-common:
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:- apache-airflow-providers-microsoft-mssql apache-airflow-providers-snowflake sqlglot pandas snowflake-sqlalchemy==1.5.1 pymssql==2.2.11 apache-airflow-providers-microsoft-mssql}
     # You should create folders:
     # mkdir -p airflow_data/{config,dags,logs,plugins} source_data target_data
+    # docker compose up airflow-init
+    # docker compose up
   volumes:
     - ./airflow_data/dags:/opt/airflow/dags
     - ./airflow_data/logs:/opt/airflow/logs
