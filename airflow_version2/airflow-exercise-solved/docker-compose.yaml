@@ -69,6 +69,8 @@ x-airflow-common:
     # WARNING: Use _PIP_ADDITIONAL_REQUIREMENTS option ONLY for a quick checks
     # for other purpose (development, test and especially production usage) build/extend Airflow image.
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:- apache-airflow-providers-microsoft-mssql apache-airflow-providers-snowflake sqlglot pandas snowflake-sqlalchemy==1.5.1 pymssql==2.2.11 apache-airflow-providers-microsoft-mssql}
+    # You should create folders:
+    # mkdir -p airflow_data/{config,dags,logs,plugins} source_data target_data
   volumes:
     - ./airflow_data/dags:/opt/airflow/dags
     - ./airflow_data/logs:/opt/airflow/logs
