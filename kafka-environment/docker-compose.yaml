@@ -36,31 +36,31 @@ services:
         depends_on:
             - course-kafka
 
-    # kafka-connect:
-    #     container_name: kafka-connect
-    #     image: confluentinc/cp-kafka-connect:7.3.2
-    #     depends_on:
-    #         - course-kafka
-    #         - mongo
-    #     ports:
-    #         - "8083:8083"
-    #     environment:
-    #         CONNECT_BOOTSTRAP_SERVERS: course-kafka:9092
-    #         CONNECT_REST_PORT: 8083
-    #         CONNECT_REST_ADVERTISED_HOST_NAME: kafka-connect
-    #         CONNECT_GROUP_ID: kafka-connect-group
-    #         CONNECT_CONFIG_STORAGE_TOPIC: connect-configs
-    #         CONNECT_OFFSET_STORAGE_TOPIC: connect-offsets
-    #         CONNECT_STATUS_STORAGE_TOPIC: connect-status
-    #         CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
-    #         CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
-    #         CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
-    #         CONNECT_KEY_CONVERTER: org.apache.kafka.connect.storage.StringConverter
-    #         CONNECT_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
-    #         CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE: "false"
-    #         CONNECT_PLUGIN_PATH: /usr/share/java,/usr/share/confluent-hub-components,/plugins
-    #     volumes:
-    #         - ./mongo-kafka-connect:/plugins/mongo            
+    kafka-connect:
+        container_name: kafka-connect
+        image: confluentinc/cp-kafka-connect:7.3.2
+        depends_on:
+            - course-kafka
+            - mongo
+        ports:
+            - "8083:8083"
+        environment:
+            CONNECT_BOOTSTRAP_SERVERS: course-kafka:9092
+            CONNECT_REST_PORT: 8083
+            CONNECT_REST_ADVERTISED_HOST_NAME: kafka-connect
+            CONNECT_GROUP_ID: kafka-connect-group
+            CONNECT_CONFIG_STORAGE_TOPIC: connect-configs
+            CONNECT_OFFSET_STORAGE_TOPIC: connect-offsets
+            CONNECT_STATUS_STORAGE_TOPIC: connect-status
+            CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+            CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+            CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+            CONNECT_KEY_CONVERTER: org.apache.kafka.connect.storage.StringConverter
+            CONNECT_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+            CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE: "false"
+            CONNECT_PLUGIN_PATH: /usr/share/java,/usr/share/confluent-hub-components,/plugins
+        volumes:
+            - ./mongo-kafka-connect:/plugins/mongo            
 
     python-app:
         image: python:3.11-slim
@@ -106,14 +106,14 @@ services:
     #         - "4041:4041"
     #         - "4042:4042"
 
-    # mongo:
-    #     image: mongo:8.0
-    #     container_name: mongo
-    #     volumes:
-    #     - ./data:/de_data
-    #     working_dir: /de_data        
-    #     ports:
-    #         - "27017:27017"
+    mongo:
+        image: mongo:8.0
+        container_name: mongo
+        volumes:
+        - ./data:/de_data
+        working_dir: /de_data        
+        ports:
+            - "27017:27017"
             
     # nifi:
     #     image: nayacollege/nifi:1.0
