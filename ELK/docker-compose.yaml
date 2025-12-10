@@ -9,32 +9,32 @@ services:
     #         - "9001:9000"
     #         - "9002:9001"
 
-    # zookeeper:
-    #     container_name: zookeeper
-    #     image: wurstmeister/zookeeper:latest
-    #     ports:
-    #         - "2181:2181"
+    zookeeper:
+        container_name: zookeeper
+        image: wurstmeister/zookeeper:latest
+        ports:
+            - "2181:2181"
 
-    # course-kafka:
-    #     container_name: course-kafka
-    #     image: wurstmeister/kafka:2.13-2.8.1
-    #     environment:
-    #         KAFKA_ADVERTISED_HOST_NAME: course-kafka
-    #         KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-    #     ports:
-    #         - "9092:9092"
-    #     depends_on:
-    #         - zookeeper
+    course-kafka:
+        container_name: course-kafka
+        image: wurstmeister/kafka:2.13-2.8.1
+        environment:
+            KAFKA_ADVERTISED_HOST_NAME: course-kafka
+            KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+        ports:
+            - "9092:9092"
+        depends_on:
+            - zookeeper
 
-    # kafdrop:
-    #     container_name: kafdrop
-    #     image: obsidiandynamics/kafdrop:3.30.0
-    #     ports:
-    #         - "9003:9000"
-    #     environment:
-    #         - KAFKA_BROKERCONNECT=course-kafka:9092
-    #     depends_on:
-    #         - course-kafka
+    kafdrop:
+        container_name: kafdrop
+        image: obsidiandynamics/kafdrop:3.30.0
+        ports:
+            - "9003:9000"
+        environment:
+            - KAFKA_BROKERCONNECT=course-kafka:9092
+        depends_on:
+            - course-kafka
 
     # kafka-connect:
     #     container_name: kafka-connect
@@ -62,20 +62,20 @@ services:
     #     volumes:
     #         - ./mongo-kafka-connect:/plugins/mongo            
 
-    # python-app:
-    #     image: python:3.11-slim
-    #     container_name: python-kafka-container
-    #     command: tail -f /dev/null  # Keeps the container alive
-    #     volumes:
-    #     - ./app:/app
-    #     working_dir: /app
-    #     tty: true
-    #     stdin_open: true
-    #     entrypoint: >
-    #         sh -c "apt-get update &&
-    #             apt-get install -y vim nano &&
-    #             pip install --no-cache-dir kafka-python &&
-    #             tail -f /dev/null"
+    python-app:
+        image: python:3.11-slim
+        container_name: python-kafka-container
+        command: tail -f /dev/null  # Keeps the container alive
+        volumes:
+        - ./app:/app
+        working_dir: /app
+        tty: true
+        stdin_open: true
+        entrypoint: >
+            sh -c "apt-get update &&
+                apt-get install -y vim nano &&
+                pip install --no-cache-dir kafka-python &&
+                tail -f /dev/null"
             
     # mariadb:
     #     container_name: mariadb
