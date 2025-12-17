@@ -1,0 +1,3 @@
+airflow_version2/dags/__pycache__/
+airflow_version2/logs/
+airflow_version2/plugins/
