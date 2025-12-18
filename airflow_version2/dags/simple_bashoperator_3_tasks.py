@@ -37,3 +37,4 @@ with DAG(
 
     # Task dependencies
     task_1 >> task_2 >> task_3
+    # [task_2, task_3] << task_1
