@@ -1,7 +1,7 @@
 from kafka import KafkaProducer
 import time,json,requests
 from datetime import datetime
-
+import elasticsearch, requests
 
 while True:
     # ======== Read from Remote API  ==================== #
