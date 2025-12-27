@@ -1,6 +1,7 @@
 from kafka import KafkaConsumer
 from elasticsearch import Elasticsearch # type: ignore
 import json
+import elasticsearch
 
 #pip install elasticsearch
 #pip install --upgrade elasticsearch==7.13.2
